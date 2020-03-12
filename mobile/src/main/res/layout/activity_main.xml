@@ -29,13 +29,13 @@
         android:layout_marginEnd="167dp"
         android:layout_marginBottom="40dp"
         android:text="Группы мышц"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add_exersices"
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_exercices"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_add_exersices"
+        android:id="@+id/btn_add_exercices"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"

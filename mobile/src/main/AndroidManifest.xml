@@ -3,6 +3,7 @@
     package="com.example.fitnesappv">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -17,6 +18,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ExerciseActivity"
+            android:label="@string/exercise_title">
         </activity>
     </application>
 
