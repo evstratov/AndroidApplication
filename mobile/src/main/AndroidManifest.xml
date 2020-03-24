@@ -22,6 +22,9 @@
         <activity android:name=".ExerciseActivity"
             android:label="@string/exercise_title">
         </activity>
+        <activity android:name=".AddExercise"
+            android:label="@string/add_title">
+        </activity>
     </application>
 
 </manifest>
