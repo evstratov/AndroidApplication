@@ -25,6 +25,9 @@
         <activity android:name=".AddExercise"
             android:label="@string/add_title">
         </activity>
+        <activity android:name=".Group"
+            android:label = "@string/group_title">
+        </activity>
     </application>
 
 </manifest>

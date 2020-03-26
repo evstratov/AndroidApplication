@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         btn_group_training.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, Group.class);
+                startActivity(intent);
             }
         });
         btn_complex_training.setOnClickListener(new View.OnClickListener() {

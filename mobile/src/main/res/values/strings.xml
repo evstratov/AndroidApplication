@@ -2,5 +2,6 @@
     <string name="app_name">FitnesAppv</string>
     <string name="exercise_title">Тренировка</string>
     <string name="add_title">"Добавить упражнение"</string>
+    <string name="group_title">Группы</string>
 
 </resources>

@@ -38,22 +38,6 @@ public class AddExercise extends Activity {
 
                 database.insert(DBHelper.TABLE_EXERCISE, null, contentValues);
 
-                Cursor cursor = database.query(DBHelper.TABLE_EXERCISE, null, null, null, null, null, null);
-
-                if (cursor.moveToFirst()) {
-                    int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
-                    int nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
-                    int emailIndex = cursor.getColumnIndex(DBHelper.KEY_APPROACH);
-                    do {
-                        Log.d("mLog", "ID = " + cursor.getInt(idIndex) +
-                                ", name = " + cursor.getString(nameIndex) +
-                                ", approach = " + cursor.getString(emailIndex));
-                    } while (cursor.moveToNext());
-                } else
-                    Log.d("mLog","0 rows");
-
-                cursor.close();
-
                 dbHelper.close();
             }
         });
