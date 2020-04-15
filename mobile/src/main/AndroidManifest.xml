@@ -28,6 +28,9 @@
         <activity android:name=".Group"
             android:label = "@string/group_title">
         </activity>
+        <activity android:name=".Complex"
+            android:label = "@string/complex_title">
+        </activity>
     </application>
 
 </manifest>

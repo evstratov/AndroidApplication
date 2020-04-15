@@ -7,6 +7,15 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/txt_curExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_timer"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/txt_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
-        android:id="@+id/table_common_time"
+        android:id="@+id/table_exercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -28,7 +37,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/txt_label_common_time"

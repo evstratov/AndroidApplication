@@ -8,6 +8,19 @@ import androidx.annotation.Nullable;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    public enum GroupENUM{
+        Ноги,
+        Спина,
+        Грудь,
+        Руки,
+        Плечи
+    }
+    public enum  ComplexENUM{
+        День1,
+        День2,
+        День3
+    }
+
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "exercisesDB";
     public static final String TABLE_EXERCISE = "exerciseTable";
@@ -15,6 +28,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_ID = "_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_APPROACH = "approach";
+    public static final String KEY_GROUP = "group_key";
+    public static final String KEY_COMPLEX = "complex_key";
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,7 +38,8 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_EXERCISE + "(" + KEY_ID
-                + " integer primary key," + KEY_NAME + " text," + KEY_APPROACH + " integer" + ")");
+                + " integer primary key," + KEY_NAME + " text," + KEY_APPROACH + " integer,"
+                + KEY_GROUP + " integer,"+ KEY_COMPLEX + " integer" + ")");
     }
 
     @Override

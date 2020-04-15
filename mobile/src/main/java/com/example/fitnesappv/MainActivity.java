@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         btn_complex_training.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ExerciseActivity.class);
+                Intent intent = new Intent(MainActivity.this, Complex.class);
                 startActivity(intent);
             }
         });
