@@ -1,7 +1,10 @@
 package com.example.fitnesappv;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
@@ -47,6 +50,7 @@ public class ExerciseActivity extends Activity {
     TextView txt_curExercise;
     TextView txt_common_time;
     boolean isApproach;
+    boolean isWait;
     int curExerciseIndex;
     int approach;
 
@@ -63,6 +67,7 @@ public class ExerciseActivity extends Activity {
         String valueOfType = arguments.get("key_value").toString();
 
         isApproach = false;
+        isWait = false;
         curExerciseIndex = 0;
         approach = 1;
 
@@ -83,12 +88,12 @@ public class ExerciseActivity extends Activity {
         // общее время тренировки
         CommonTime();
 
-        if(!isApproach){
-            btn_stop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        btn_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isWait) {
                     int seconds = 5;
-
+                    isWait = true;
                     CountDownTimer countDownTimer = new CountDownTimer(seconds * 1000, 1000) {
                         @Override
                         public void onTick(long millis) {
@@ -100,10 +105,11 @@ public class ExerciseActivity extends Activity {
                             bellSound.start();
                             txt_timer.setText("Подход");
                             isApproach = true;
+                            isWait = false;
 
                             NextApproach();
 
-                            long[] pattern = { 300, 300, 300, 300 };
+                            long[] pattern = {300, 300, 300, 300};
                             Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
                             if (vibrator.hasVibrator()) {
@@ -112,8 +118,9 @@ public class ExerciseActivity extends Activity {
                         }
                     }.start();
                 }
-            });
-        }
+            }
+        });
+
 
         txt_timer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,9 +198,11 @@ public class ExerciseActivity extends Activity {
         if(exerciseList.get(curExerciseIndex).approaches < approach)
         {
             approach = 1;
-            if(curExerciseIndex < exerciseList.size())
+            if(curExerciseIndex < exerciseList.size() - 1)
                 curExerciseIndex++;
                 // ИНАЧЕ конец тренировки
+            else
+                StopExercises();
         }
         ShowCurExercise();
     }
@@ -221,6 +230,21 @@ public class ExerciseActivity extends Activity {
         }
 
         timerCommon.schedule(new CommonTimerTask(), 1000, 1000);
+    }
+    private void StopExercises(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Конец тренировки")
+                .setMessage("Время тренировки: " + txt_common_time.getText())
+                .setPositiveButton("Закончить", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // Закрываем окно
+                        Intent intent = new Intent(ExerciseActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        dialog.cancel();
+                    }
+                });
+        builder.create();
+        builder.show();
     }
 }
 
