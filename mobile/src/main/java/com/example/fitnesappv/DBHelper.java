@@ -30,6 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_APPROACH = "approach";
     public static final String KEY_GROUP = "group_key";
     public static final String KEY_COMPLEX = "complex_key";
+    public  static final  String KEY_CONTENT = "content_key";
 
     public DBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -39,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_EXERCISE + "(" + KEY_ID
                 + " integer primary key," + KEY_NAME + " text," + KEY_APPROACH + " integer,"
-                + KEY_GROUP + " integer,"+ KEY_COMPLEX + " integer" + ")");
+                + KEY_GROUP + " integer,"+ KEY_COMPLEX + " integer," + KEY_CONTENT + " text" + ")");
     }
 
     @Override

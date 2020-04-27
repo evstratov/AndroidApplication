@@ -15,6 +15,16 @@
         app:layout_constraintBottom_toTopOf="@+id/txt_timer"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/btn_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="Как делать?"
+        app:layout_constraintBottom_toTopOf="@+id/txt_curExercise"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/txt_timer"
         android:layout_width="wrap_content"

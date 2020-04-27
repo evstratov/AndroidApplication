@@ -4,5 +4,6 @@
     <string name="add_title">"Добавить упражнение"</string>
     <string name="group_title">Группы</string>
     <string name="complex_title">Комплекс</string>
+    <string name="help_title">Как делать?</string>
 
 </resources>

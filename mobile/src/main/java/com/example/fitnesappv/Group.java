@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,7 +56,7 @@ public class Group extends Activity {
                 ClearPreviousTable();
                 String selection = DBHelper.KEY_GROUP + " = ?";
                 selectedGroup = group_Spinner.getSelectedItem().toString();
-                String[] selectionArgs = new String[] { selectedGroup };
+                String[] selectionArgs = new String[]{selectedGroup};
 
                 SQLiteDatabase database = dbHelper.getWritableDatabase();
                 Cursor cursor = database.query(DBHelper.TABLE_EXERCISE, null, selection, selectionArgs, null, null, null);
@@ -103,7 +102,7 @@ public class Group extends Activity {
         });
     }
 
-    private final void ClearPreviousTable(){
+    private final void ClearPreviousTable() {
         group_table.removeAllViews();
     }
 }

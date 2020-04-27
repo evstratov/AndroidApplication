@@ -45,10 +45,14 @@ class ExerciseInfo{
 public class ExerciseActivity extends Activity {
     TableLayout exercise_table;
     DBHelper dbHelper;
+    Timer timerCommon;
+
     Button btn_stop;
+    Button btn_help;
     TextView txt_timer;
     TextView txt_curExercise;
     TextView txt_common_time;
+
     boolean isApproach;
     boolean isWait;
     int curExerciseIndex;
@@ -72,6 +76,7 @@ public class ExerciseActivity extends Activity {
         approach = 1;
 
         btn_stop = (Button) findViewById(R.id.btn_stop);
+        btn_help = (Button) findViewById(R.id.btn_help);
         txt_timer = (TextView) findViewById(R.id.txt_timer);
         txt_curExercise = (TextView) findViewById(R.id.txt_curExercise);
         txt_common_time = (TextView) findViewById(R.id.txt_common_time);
@@ -121,6 +126,14 @@ public class ExerciseActivity extends Activity {
             }
         });
 
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ExerciseActivity.this, Help.class);
+                intent.putExtra("currentExercise", exerciseList.get(curExerciseIndex).name);
+                startActivity(intent);
+            }
+        });
 
         txt_timer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +142,6 @@ public class ExerciseActivity extends Activity {
                     isApproach = false;
                     txt_timer.setText("");
                 }
-
             }
         });
     }
@@ -209,7 +221,7 @@ public class ExerciseActivity extends Activity {
 
     private void CommonTime()
     {
-        Timer timerCommon = new Timer();
+        timerCommon = new Timer();
         final SimpleDateFormat hourFormating = new SimpleDateFormat("H:mm:ss");
         hourFormating.setTimeZone(TimeZone.getTimeZone("UTC"));
         class CommonTimerTask extends TimerTask
@@ -245,6 +257,7 @@ public class ExerciseActivity extends Activity {
                 });
         builder.create();
         builder.show();
+        timerCommon.cancel();
     }
 }
 

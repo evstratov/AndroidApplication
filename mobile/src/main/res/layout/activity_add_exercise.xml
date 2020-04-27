@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName" />
+
         </TableRow>
 
         <TableRow
@@ -37,7 +38,25 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/txt_approaches_count"
+                android:id="@+id/txt_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Описание" />
+
+            <EditText
+                android:id="@+id/editContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_approaches"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Подходы" />
