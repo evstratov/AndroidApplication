@@ -1,5 +1,6 @@
 package com.example.fitnesappv;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,6 +20,7 @@ public class Group extends Activity {
     DBHelper dbHelper;
     private String selectedGroup;
     Button btn_startGroup;
+    Button btn_back;
     Spinner group_Spinner;
 
     @Override
@@ -44,6 +46,14 @@ public class Group extends Activity {
             }
         };
         btn_startGroup.setOnClickListener(btnStartGroupClick);
+
+        btn_back = (Button) findViewById(R.id.btn_back_group);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     private final void CreateSpinner() {
@@ -62,28 +72,17 @@ public class Group extends Activity {
                 Cursor cursor = database.query(DBHelper.TABLE_EXERCISE, null, selection, selectionArgs, null, null, null);
 
                 if (cursor.moveToFirst()) {
-                    int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
                     int nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
                     int approachIndex = cursor.getColumnIndex(DBHelper.KEY_APPROACH);
-                    int groupIndex = cursor.getColumnIndex(DBHelper.KEY_GROUP);
-                    int complexIndex = cursor.getColumnIndex(DBHelper.KEY_COMPLEX);
 
                     do {
-                        final TableRow tableRow = new TableRow(Group.this);
-                        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
-                                TableLayout.LayoutParams.WRAP_CONTENT));
+                        final TableRow tableRow = getTableRow();
 
                         // Creation textView with name
-                        final TextView nameText = new TextView(Group.this);
-                        nameText.setText(cursor.getString(nameIndex));
-                        nameText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                                TableRow.LayoutParams.WRAP_CONTENT));
+                        final TextView nameText = getTextView(cursor.getString(nameIndex));
 
                         // Creation textView with approach count
-                        final TextView approachText = new TextView(Group.this);
-                        approachText.setText(cursor.getString(approachIndex));
-                        approachText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                                TableRow.LayoutParams.WRAP_CONTENT));
+                        final TextView approachText = getTextView(cursor.getString(approachIndex));
 
                         tableRow.addView(nameText);
                         tableRow.addView(approachText);
@@ -100,6 +99,24 @@ public class Group extends Activity {
 
             }
         });
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private TextView getTextView(String text){
+        final TextView textView = new TextView(this);
+        textView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT));
+        textView.setTextColor(R.color.colorText);
+        textView.setText(text);
+
+        return textView;
+    }
+    private TableRow getTableRow(){
+        final TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
+                TableLayout.LayoutParams.WRAP_CONTENT));
+
+        return tableRow;
     }
 
     private final void ClearPreviousTable() {

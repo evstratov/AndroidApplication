@@ -1,5 +1,6 @@
 package com.example.fitnesappv;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -49,6 +50,7 @@ public class ExerciseActivity extends Activity {
 
     Button btn_stop;
     Button btn_help;
+    Button btn_back;
     TextView txt_timer;
     TextView txt_curExercise;
     TextView txt_common_time;
@@ -80,7 +82,7 @@ public class ExerciseActivity extends Activity {
         txt_timer = (TextView) findViewById(R.id.txt_timer);
         txt_curExercise = (TextView) findViewById(R.id.txt_curExercise);
         txt_common_time = (TextView) findViewById(R.id.txt_common_time);
-        exercise_table = (TableLayout) findViewById(R.id.table_exercise);
+        exercise_table = (TableLayout) findViewById(R.id.table_exercise_id);
 
         ReadExerciseFromDB(typeOfExercise, valueOfType);
         ShowCurExercise();
@@ -92,6 +94,14 @@ public class ExerciseActivity extends Activity {
 
         // общее время тренировки
         CommonTime();
+
+        btn_back = (Button) findViewById(R.id.btn_back_exercise);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         btn_stop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,27 +178,25 @@ public class ExerciseActivity extends Activity {
             int nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
             int approachIndex = cursor.getColumnIndex(DBHelper.KEY_APPROACH);
 
+            TableRow titleTableRow = getTableRow();
+            TextView nameTitle = getTextView("Название");
+            TextView approachTitle = getTextView("Подходы");
+
+            titleTableRow.addView(nameTitle);
+            titleTableRow.addView(approachTitle);
+
+            exercise_table.addView(titleTableRow);
+
             do {
                 String name = cursor.getString(nameIndex);
                 String approaches = cursor.getString(approachIndex);
 
                 exerciseList.add(new ExerciseInfo(name, Integer.parseInt(approaches)));
 
-                final TableRow tableRow = new TableRow(this);
-                tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT));
+                final TableRow tableRow = getTableRow();
 
-                // Creation textView with name
-                final TextView nameText = new TextView(this);
-                nameText.setText(name);
-                nameText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT));
-
-                // Creation textView with approach count
-                final TextView approachText = new TextView(this);
-                approachText.setText(approaches);
-                approachText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT));
+                final TextView nameText = getTextView(name);
+                final TextView approachText = getTextView(approaches);
 
                 tableRow.addView(nameText);
                 tableRow.addView(approachText);
@@ -201,6 +209,24 @@ public class ExerciseActivity extends Activity {
         dbHelper.close();
     }
 
+    @SuppressLint("ResourceAsColor")
+    private TextView getTextView(String text){
+        final TextView textView = new TextView(this);
+        textView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT));
+
+        textView.setText(text);
+        textView.setTextColor(R.color.colorText);
+
+        return textView;
+    }
+    private TableRow getTableRow(){
+        final TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
+                TableLayout.LayoutParams.WRAP_CONTENT));
+
+        return tableRow;
+    }
     private void ShowCurExercise(){
         String text = String.format("Упражнение: %s, подход: %o.", exerciseList.get(curExerciseIndex).name, approach);
         txt_curExercise.setText(text);

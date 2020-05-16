@@ -1,5 +1,6 @@
 package com.example.fitnesappv;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,6 +20,7 @@ public class Complex extends Activity {
     DBHelper dbHelper;
     private String selectedComplex;
     Button btn_startComplex;
+    Button btn_back;
     Spinner complex_Spinner;
 
     @Override
@@ -32,6 +34,14 @@ public class Complex extends Activity {
         dbHelper = new DBHelper(this);
         CreateSpinner();
         dbHelper.close();
+
+        btn_back = (Button) findViewById(R.id.btn_back_complex);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         View.OnClickListener btnStartComplexClick = new View.OnClickListener() {
             @Override
@@ -66,21 +76,13 @@ public class Complex extends Activity {
                     int approachIndex = cursor.getColumnIndex(DBHelper.KEY_APPROACH);
 
                     do {
-                        final TableRow tableRow = new TableRow(Complex.this);
-                        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
-                                TableLayout.LayoutParams.WRAP_CONTENT));
+                        final TableRow tableRow = getTableRow();
 
                         // Creation textView with name
-                        final TextView nameText = new TextView(Complex.this);
-                        nameText.setText(cursor.getString(nameIndex));
-                        nameText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                                TableRow.LayoutParams.WRAP_CONTENT));
+                        final TextView nameText = getTextView(cursor.getString(nameIndex));
 
                         // Creation textView with approach count
-                        final TextView approachText = new TextView(Complex.this);
-                        approachText.setText(cursor.getString(approachIndex));
-                        approachText.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
-                                TableRow.LayoutParams.WRAP_CONTENT));
+                        final TextView approachText = getTextView(cursor.getString(approachIndex));
 
                         tableRow.addView(nameText);
                         tableRow.addView(approachText);
@@ -97,6 +99,23 @@ public class Complex extends Activity {
 
             }
         });
+    }
+    @SuppressLint("ResourceAsColor")
+    private TextView getTextView(String text){
+        final TextView textView = new TextView(this);
+        textView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT));
+        textView.setTextColor(R.color.colorText);
+        textView.setText(text);
+
+        return textView;
+    }
+    private TableRow getTableRow(){
+        final TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
+                TableLayout.LayoutParams.WRAP_CONTENT));
+
+        return tableRow;
     }
 
     private final void ClearPreviousTable(){

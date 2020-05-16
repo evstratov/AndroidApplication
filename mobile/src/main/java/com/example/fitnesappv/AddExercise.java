@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 public class AddExercise extends Activity {
     Button btn_add;
+    Button btn_back;
     EditText editName;
     EditText editApproaches;
     EditText editContent;
@@ -55,6 +56,14 @@ public class AddExercise extends Activity {
                 database.insert(DBHelper.TABLE_EXERCISE, null, contentValues);
 
                 dbHelper.close();
+            }
+        });
+
+        btn_back = (Button) findViewById(R.id.btn_back_add);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
 
