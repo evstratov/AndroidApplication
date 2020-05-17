@@ -20,6 +20,7 @@
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
             android:layout_marginTop="300sp"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Комплекс" />
 
@@ -31,6 +32,7 @@
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
             android:layout_marginTop="50sp"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Группы мышц" />
 
@@ -42,6 +44,7 @@
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
             android:layout_marginTop="50sp"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Добавить упражнения" />
     </LinearLayout>

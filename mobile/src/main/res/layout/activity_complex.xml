@@ -16,7 +16,7 @@
             android:id="@+id/complexSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fields"
+            style="@style/Spinner"
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
             android:layout_marginTop="150dp" />
@@ -45,6 +45,7 @@
             android:layout_marginBottom="10sp"
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:background="@drawable/buttons"
             android:text="Начать" />
@@ -56,6 +57,7 @@
             android:layout_marginRight="50sp"
             android:layout_marginBottom="10sp"
             android:background="@drawable/buttons"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Назад" />
     </LinearLayout>

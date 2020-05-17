@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -22,6 +23,8 @@ import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import org.w3c.dom.Text;
 
@@ -179,8 +182,14 @@ public class ExerciseActivity extends Activity {
             int approachIndex = cursor.getColumnIndex(DBHelper.KEY_APPROACH);
 
             TableRow titleTableRow = getTableRow();
+            // заголовки таблицы со списком упражнений
             TextView nameTitle = getTextView("Название");
+            nameTitle.setTextColor(ContextCompat.getColor(this.getApplicationContext(), R.color.colorTitleText));
+            nameTitle.setTextAppearance(R.style.TitleText);
+
             TextView approachTitle = getTextView("Подходы");
+            approachTitle.setTextColor(ContextCompat.getColor(this.getApplicationContext(), R.color.colorTitleText));
+            approachTitle.setTextAppearance(R.style.TitleText);
 
             titleTableRow.addView(nameTitle);
             titleTableRow.addView(approachTitle);
@@ -212,23 +221,29 @@ public class ExerciseActivity extends Activity {
     @SuppressLint("ResourceAsColor")
     private TextView getTextView(String text){
         final TextView textView = new TextView(this);
-        textView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT));
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.MATCH_PARENT);
+        lp.setMargins(0, 0, 20, 0);
+        textView.setLayoutParams(lp);
 
         textView.setText(text);
-        textView.setTextColor(R.color.colorText);
+        textView.setTextColor(ContextCompat.getColor(this.getApplicationContext(), R.color.colorText));
+        textView.setTextAppearance(R.style.SimpleText);
 
         return textView;
     }
     private TableRow getTableRow(){
         final TableRow tableRow = new TableRow(this);
-        tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
-                TableLayout.LayoutParams.WRAP_CONTENT));
+        TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                TableLayout.LayoutParams.MATCH_PARENT);
+        lp.setMargins(0, 10, 0, 0);
+        tableRow.setLayoutParams(lp);
+
 
         return tableRow;
     }
     private void ShowCurExercise(){
-        String text = String.format("Упражнение: %s, подход: %o.", exerciseList.get(curExerciseIndex).name, approach);
+        String text = String.format("%s, подход: %o.", exerciseList.get(curExerciseIndex).name, approach);
         txt_curExercise.setText(text);
     }
     private void NextApproach(){

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -42,8 +43,11 @@ public class Help extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        header.setTextAppearance(R.style.TitleText);
         header.setText(currentExercise);
+
         content.setText(contentStr);
+        content.setTextAppearance(R.style.SimpleText);
         dbHelper.close();
 
         btn_back = (Button) findViewById(R.id.btn_back);
@@ -80,8 +84,11 @@ public class Help extends Activity {
                     InputStream istr = getApplicationContext().getAssets().open(imagePath);
                     image.setImageDrawable(Drawable.createFromStream(istr, null));
 
-                    image.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                            TableRow.LayoutParams.MATCH_PARENT));
+                    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                            TableRow.LayoutParams.MATCH_PARENT);
+                    lp.setMargins(0, 10, 0, 10);
+
+                    image.setLayoutParams(lp);
 
                     tableRow.addView(image);
                     tableLayout.addView(tableRow);

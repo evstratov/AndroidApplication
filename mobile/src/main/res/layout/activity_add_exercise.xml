@@ -35,7 +35,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20sp"
-                        android:textSize="20sp"
+                        style="@style/SimpleText"
                         android:textColor="@color/colorText"
                         android:text="Название" />
 
@@ -60,7 +60,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
-                        android:textSize="20sp"
+                        style="@style/SimpleText"
                         android:textColor="@color/colorText"
                         android:text="Описание" />
 
@@ -84,7 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
-                        android:textSize="20sp"
+                        style="@style/SimpleText"
                         android:textColor="@color/colorText"
                         android:text="Подходы" />
 
@@ -95,8 +95,7 @@
                         android:background="@drawable/fields"
                         android:ems="10"
                         android:hint="Введите количество подходов"
-                        android:inputType="number"
-                        android:text="0" />
+                        android:inputType="number" />
 
                 </TableRow>
 
@@ -110,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
-                        android:textSize="20sp"
+                        style="@style/SimpleText"
                         android:textColor="@color/colorText"
                         android:text="Группа" />
 
@@ -118,7 +117,7 @@
                         android:id="@+id/spinner_Group_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/fields"/>
+                        style="@style/Spinner" />
 
                 </TableRow>
 
@@ -132,7 +131,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
-                        android:textSize="20sp"
+                        style="@style/SimpleText"
                         android:textColor="@color/colorText"
                         android:text="День" />
 
@@ -140,7 +139,7 @@
                         android:id="@+id/spinner_Complex_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/fields"/>
+                        style="@style/Spinner"/>
 
                 </TableRow>
             </TableLayout>
@@ -154,6 +153,7 @@
             android:layout_marginBottom="10sp"
             android:layout_marginLeft="50sp"
             android:layout_marginRight="50sp"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Добавить" />
         <Button
@@ -164,6 +164,7 @@
             android:layout_marginRight="50sp"
             android:layout_marginBottom="10sp"
             android:background="@drawable/buttons"
+            style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Назад" />
     </LinearLayout>
