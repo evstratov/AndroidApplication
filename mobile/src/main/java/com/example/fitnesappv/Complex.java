@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -106,8 +107,10 @@ public class Complex extends Activity {
     @SuppressLint("ResourceAsColor")
     private TextView getTextView(String text){
         final TextView textView = new TextView(this);
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.MATCH_PARENT);
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(0,
+                TableRow.LayoutParams.WRAP_CONTENT);
+        lp.weight = 1.0f;
+        lp.gravity = Gravity.TOP;
         lp.setMargins(0, 0, 20, 0);
         textView.setLayoutParams(lp);
         textView.setTextAppearance(R.style.SimpleText);
@@ -118,9 +121,10 @@ public class Complex extends Activity {
     }
     private TableRow getTableRow(){
         final TableRow tableRow = new TableRow(this);
-        TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.MATCH_PARENT);
+        TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,
+                TableLayout.LayoutParams.WRAP_CONTENT);
         lp.setMargins(0, 10, 0, 0);
+        tableRow.setBackgroundResource(R.drawable.tables);
         tableRow.setLayoutParams(lp);
 
         return tableRow;

@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -221,8 +222,10 @@ public class ExerciseActivity extends Activity {
     @SuppressLint("ResourceAsColor")
     private TextView getTextView(String text){
         final TextView textView = new TextView(this);
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(0,
                 TableRow.LayoutParams.MATCH_PARENT);
+        lp.weight = 1.0f;
+        lp.gravity = Gravity.TOP;
         lp.setMargins(0, 0, 20, 0);
         textView.setLayoutParams(lp);
 
@@ -237,6 +240,7 @@ public class ExerciseActivity extends Activity {
         TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.MATCH_PARENT);
         lp.setMargins(0, 10, 0, 0);
+        tableRow.setBackgroundResource(R.drawable.tables);
         tableRow.setLayoutParams(lp);
 
 

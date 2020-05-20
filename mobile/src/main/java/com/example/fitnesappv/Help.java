@@ -24,6 +24,8 @@ public class Help extends Activity {
     TextView content;
     DBHelper dbHelper;
 
+    boolean isImageFitToScreen;
+
     TableLayout tableLayout;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +80,7 @@ public class Help extends Activity {
                 for(String imageName:fileNames){
                     final TableRow tableRow = getTableRow();
 
-                    final ImageView image = new ImageView(Help.this);
-
-                    String imagePath = folderPath + "/" + imageName;
-                    InputStream istr = getApplicationContext().getAssets().open(imagePath);
-                    image.setImageDrawable(Drawable.createFromStream(istr, null));
-
-                    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                            TableRow.LayoutParams.MATCH_PARENT);
-                    lp.setMargins(0, 10, 0, 10);
-
-                    image.setLayoutParams(lp);
+                    final ImageView image = getImage(folderPath, imageName);
 
                     tableRow.addView(image);
                     tableLayout.addView(tableRow);
@@ -104,5 +96,36 @@ public class Help extends Activity {
                 TableLayout.LayoutParams.WRAP_CONTENT));
 
         return tableRow;
+    }
+
+    private ImageView getImage(String folderPath, String imageName) throws IOException {
+        final ImageView image = new ImageView(Help.this);
+
+        String imagePath = folderPath + "/" + imageName;
+        InputStream istr = getApplicationContext().getAssets().open(imagePath);
+        image.setImageDrawable(Drawable.createFromStream(istr, null));
+
+        final TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.MATCH_PARENT);
+        lp.setMargins(0, 10, 0, 10);
+
+        image.setLayoutParams(lp);
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isImageFitToScreen) {
+                    isImageFitToScreen = false;
+                    image.setLayoutParams(lp);
+                    image.setAdjustViewBounds(true);
+                }else{
+                    isImageFitToScreen = true;
+                    image.setLayoutParams(lp);
+                    image.setScaleType(ImageView.ScaleType.FIT_XY);
+                }
+            }
+        });
+
+        return  image;
     }
 }

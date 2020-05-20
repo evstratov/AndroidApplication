@@ -16,6 +16,7 @@ import java.io.OutputStream;
 public class DBHelper extends SQLiteOpenHelper {
 
     public enum GroupENUM{
+        ПУСТО,
         Ноги,
         Спина,
         Грудь,
@@ -23,6 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
         Плечи
     }
     public enum  ComplexENUM{
+        ПУСТО,
         День1,
         День2,
         День3

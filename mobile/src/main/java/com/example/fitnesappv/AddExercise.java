@@ -1,7 +1,9 @@
 package com.example.fitnesappv;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddExercise extends Activity {
     Button btn_add;
@@ -44,16 +47,22 @@ public class AddExercise extends Activity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLiteDatabase database = dbHelper.getWritableDatabase();
-                ContentValues contentValues = new ContentValues();
+                if(isFillColums()){
+                    SQLiteDatabase database = dbHelper.getWritableDatabase();
+                    ContentValues contentValues = new ContentValues();
 
-                contentValues.put(DBHelper.KEY_NAME, editName.getText().toString());
-                contentValues.put(DBHelper.KEY_APPROACH, editApproaches.getText().toString());
-                contentValues.put(DBHelper.KEY_CONTENT, editContent.getText().toString());
-                contentValues.put(DBHelper.KEY_GROUP, spinnerGroupId.getSelectedItem().toString());
-                contentValues.put(DBHelper.KEY_COMPLEX, spinnerComplexId.getSelectedItem().toString());
+                    contentValues.put(DBHelper.KEY_NAME, editName.getText().toString());
+                    contentValues.put(DBHelper.KEY_APPROACH, editApproaches.getText().toString());
+                    contentValues.put(DBHelper.KEY_CONTENT, editContent.getText().toString());
+                    contentValues.put(DBHelper.KEY_GROUP, spinnerGroupId.getSelectedItem().toString());
+                    contentValues.put(DBHelper.KEY_COMPLEX, spinnerComplexId.getSelectedItem().toString());
 
-                database.insert(DBHelper.TABLE_EXERCISE, null, contentValues);
+                    database.insert(DBHelper.TABLE_EXERCISE, null, contentValues);
+
+
+                    Toast toast = Toast.makeText(AddExercise.this, "Добавлено", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
 
                 dbHelper.close();
             }
@@ -66,7 +75,29 @@ public class AddExercise extends Activity {
                 onBackPressed();
             }
         });
+    }
 
+    private boolean isFillColums(){
+        if(spinnerGroupId.getSelectedItem().toString().equals("ПУСТО") ||
+                spinnerComplexId.getSelectedItem().toString().equals("ПУСТО")||
+                editName.getText().toString().equals("") ||
+                editApproaches.getText().toString().equals("") ||
+                editContent.getText().toString().equals("")){
 
+            new AlertDialog.Builder(AddExercise.this)
+                    .setMessage("Не все поля заполнены")
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return  false;
+        } else
+            return  true;
     }
 }

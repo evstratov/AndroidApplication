@@ -47,6 +47,17 @@
             style="@style/ButtonText"
             android:textColor="@color/colorText"
             android:text="Добавить упражнения" />
+        <Button
+            android:id="@+id/btn_delete_exercises"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:layout_marginLeft="50sp"
+            android:layout_marginRight="50sp"
+            android:layout_marginTop="50sp"
+            style="@style/ButtonText"
+            android:textColor="@color/colorText"
+            android:text="Удалить/изменить упражнение" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

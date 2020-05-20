@@ -6,4 +6,6 @@
     <color name="colorBackground">#1a3a42</color>
     <color name="colorText">#c9c9c9</color>
     <color name="colorTitleText">#787878</color>
+    <color name="colorTable">#122c33</color>
+    <color name="colorButton">#9e3d1c</color>
 </resources>

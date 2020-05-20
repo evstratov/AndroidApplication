@@ -5,5 +5,7 @@
     <string name="group_title">Группы</string>
     <string name="complex_title">Комплекс</string>
     <string name="help_title">Как делать?</string>
+    <string name="delete_edit_title">Удааление/редактирование упражнений</string>
+    <string name="edit_title">Редактирование упражнения</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -107,8 +108,11 @@ public class Group extends Activity {
     @SuppressLint("ResourceAsColor")
     private TextView getTextView(String text){
         final TextView textView = new TextView(this);
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(0,
+                TableRow.LayoutParams.MATCH_PARENT);
         lp.setMargins(0, 0, 20, 0);
+        lp.weight = 1.0f;
+        lp.gravity = Gravity.TOP;
         textView.setLayoutParams(lp);
         textView.setTextAppearance(R.style.SimpleText);
         textView.setTextColor(ContextCompat.getColor(this.getApplicationContext(), R.color.colorText));
@@ -121,6 +125,8 @@ public class Group extends Activity {
         TableLayout.LayoutParams lp = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.MATCH_PARENT);
         lp.setMargins(0, 10, 0, 0);
+        tableRow.setBackgroundResource(R.drawable.tables);
+        //tableRow.
         tableRow.setLayoutParams(lp);
 
         return tableRow;
