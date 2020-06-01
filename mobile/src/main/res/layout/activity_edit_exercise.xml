@@ -29,7 +29,6 @@
                     android:layout_marginBottom="20sp">
 
                     <TextView
-                        android:id="@+id/txt_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="20sp"
@@ -38,7 +37,7 @@
                         android:text="Название" />
 
                     <EditText
-                        android:id="@+id/editName"
+                        android:id="@+id/editName_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/fields"
@@ -54,7 +53,6 @@
                     android:layout_marginBottom="20sp">
 
                     <TextView
-                        android:id="@+id/txt_content"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
@@ -63,7 +61,7 @@
                         android:text="Описание" />
 
                     <EditText
-                        android:id="@+id/editContent"
+                        android:id="@+id/editContent_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/fields"
@@ -78,7 +76,6 @@
                     android:layout_marginBottom="20sp">
 
                     <TextView
-                        android:id="@+id/txt_approaches"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
@@ -87,7 +84,7 @@
                         android:text="Подходы" />
 
                     <EditText
-                        android:id="@+id/editApproaches"
+                        android:id="@+id/editApproaches_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/fields"
@@ -103,7 +100,6 @@
                     android:layout_marginBottom="20sp">
 
                     <TextView
-                        android:id="@+id/txt_group_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
@@ -112,7 +108,7 @@
                         android:text="Группа" />
 
                     <Spinner
-                        android:id="@+id/spinner_Group_id"
+                        android:id="@+id/spinner_Group_id_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Spinner" />
@@ -125,7 +121,6 @@
                     android:layout_marginBottom="20sp">
 
                     <TextView
-                        android:id="@+id/txt_complex_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10sp"
@@ -134,7 +129,7 @@
                         android:text="День" />
 
                     <Spinner
-                        android:id="@+id/spinner_Complex_id"
+                        android:id="@+id/spinner_Complex_id_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Spinner"/>
@@ -144,7 +139,7 @@
         </ScrollView>
 
         <Button
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_ok_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/buttons"
@@ -155,7 +150,7 @@
             android:textColor="@color/colorText"
             android:text="ОК" />
         <Button
-            android:id="@+id/btn_back_add"
+            android:id="@+id/btn_back_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"

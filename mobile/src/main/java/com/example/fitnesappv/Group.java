@@ -62,8 +62,8 @@ public class Group extends Activity {
 
     private final void CreateSpinner() {
         group_Spinner = (Spinner) findViewById(R.id.groupSpinner);
-        group_Spinner.setAdapter(new ArrayAdapter<DBHelper.GroupENUM>(this,
-                android.R.layout.simple_spinner_item, DBHelper.GroupENUM.values()));
+        group_Spinner.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, DBHelper.GroupArr));
         group_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

@@ -80,7 +80,7 @@ public class DeleteEditExercise extends Activity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(DeleteEditExercise.this, EditExercise.class);
-                        intent.putExtra("editIdExercise", delOrEditNumber);
+                        intent.putExtra("editIdExercise", delOrEditNumber.toString());
                         startActivity(intent);
                     }
                 });

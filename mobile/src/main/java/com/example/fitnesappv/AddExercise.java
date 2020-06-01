@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Collections;
+
 public class AddExercise extends Activity {
     Button btn_add;
     Button btn_back;
@@ -39,10 +41,10 @@ public class AddExercise extends Activity {
         spinnerGroupId = (Spinner) findViewById(R.id.spinner_Group_id);
         spinnerComplexId = (Spinner) findViewById(R.id.spinner_Complex_id);
 
-        spinnerGroupId.setAdapter(new ArrayAdapter<DBHelper.GroupENUM>(this,
-                android.R.layout.simple_spinner_item, DBHelper.GroupENUM.values()));
-        spinnerComplexId.setAdapter(new ArrayAdapter<DBHelper.ComplexENUM>(this,
-                android.R.layout.simple_spinner_item, DBHelper.ComplexENUM.values()));
+        spinnerGroupId.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, DBHelper.GroupArr));
+        spinnerComplexId.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, DBHelper.ComplexArr));
 
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override

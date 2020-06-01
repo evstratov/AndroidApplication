@@ -15,20 +15,19 @@ import java.io.OutputStream;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    public enum GroupENUM{
-        ПУСТО,
-        Ноги,
-        Спина,
-        Грудь,
-        Руки,
-        Плечи
-    }
-    public enum  ComplexENUM{
-        ПУСТО,
-        День1,
-        День2,
-        День3
-    }
+    public static String[] GroupArr = {
+        " ",
+        "Ноги",
+        "Спина",
+        "Грудь",
+        "Руки",
+        "Плечи"};
+    public static String[]  ComplexArr = {
+        " ",
+        "День1",
+        "День2",
+        "День3"
+    };
 
     public static final int DATABASE_VERSION = 1;
     private static String DB_PATH = "";
