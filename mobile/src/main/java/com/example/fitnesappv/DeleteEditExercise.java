@@ -32,7 +32,7 @@ public class DeleteEditExercise extends Activity {
         dbHelper = new DBHelper(this);
 
         table_exercise = (TableLayout) findViewById(R.id.table_delete_exercise);
-        PrintTable();
+        //PrintTable();
 
         btn_back = (Button) findViewById(R.id.btn_back_delete);
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +41,13 @@ public class DeleteEditExercise extends Activity {
                 onBackPressed();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clearPreviousTable();
+        PrintTable();
     }
 
     @SuppressLint("ResourceAsColor")

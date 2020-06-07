@@ -109,6 +109,7 @@ public class EditExercise extends Activity {
             contentValues.put(DBHelper.KEY_APPROACH, Integer.parseInt(editApproaches.getText().toString()));
             contentValues.put(DBHelper.KEY_GROUP, String.valueOf(spinnerGroupId.getSelectedItem()));
             contentValues.put(DBHelper.KEY_COMPLEX, String.valueOf(spinnerGroupId.getSelectedItem()));
+            contentValues.put(DBHelper.KEY_USERRECORD, 1);
 
             database.update(DBHelper.TABLE_EXERCISE, contentValues, DBHelper.KEY_ID +" = ?", new String[] { String.valueOf(idEditExercise) });
 

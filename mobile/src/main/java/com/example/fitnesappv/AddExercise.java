@@ -58,6 +58,7 @@ public class AddExercise extends Activity {
                     contentValues.put(DBHelper.KEY_CONTENT, editContent.getText().toString());
                     contentValues.put(DBHelper.KEY_GROUP, spinnerGroupId.getSelectedItem().toString());
                     contentValues.put(DBHelper.KEY_COMPLEX, spinnerComplexId.getSelectedItem().toString());
+                    contentValues.put(DBHelper.KEY_USERRECORD, 1);
 
                     database.insert(DBHelper.TABLE_EXERCISE, null, contentValues);
 

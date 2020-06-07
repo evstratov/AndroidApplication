@@ -29,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
         "День3"
     };
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     private static String DB_PATH = "";
     public static final String DB_NAME = "exercises.db";
     public static final String TABLE_EXERCISE = "exerciseTable";
@@ -44,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_COMPLEX = "_complex";
     public  static final  String KEY_CONTENT = "_content";
     public  static final  String KEY_IMAGES = "_images_path";
+    public  static final  String KEY_USERRECORD = "_user_record";
 
     public DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
@@ -58,17 +59,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
         this.getReadableDatabase();
     }
-    public void updateDataBase() throws IOException {
-        if (mNeedUpdate) {
-            File dbFile = new File(DB_PATH + DB_NAME);
-            if (dbFile.exists())
-                dbFile.delete();
 
-            copyDataBase();
-
-            mNeedUpdate = false;
+    /*public void updateDataBase() throws IOException {
+        File dbFile = new File(DB_PATH + DB_NAME);
+        if (dbFile.exists() && openDataBase()) {
+            mDataBase.execSQL("create temporary table tmp_user_table (_id integer, _name text, _approach integer, _group text, _complex text, _images_path text);");
+            mDataBase.execSQL("insert into tmp_user_table select _id, _name, _approach, _group, _complex, _images_path from userTable;");
+            mDataBase.execSQL("drop table userTable;");
+            dbFile.delete();
         }
-    }
+        copyDataBase();
+    }*/
 
     private boolean checkDataBase() {
         File dbFile = new File(DB_PATH + DB_NAME);
@@ -118,7 +119,57 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (newVersion > oldVersion)
-            mNeedUpdate = true;
+        if (newVersion > oldVersion) {
+            updateExerciseTable(mContext, db);
+        }
+    }
+    private void updateExerciseTable(Context context, SQLiteDatabase db) {
+        // Подготовка к копированию обновленной базы данных из папки ресурсов
+        InputStream is;
+        OutputStream os;
+        final String tempNewDbName = "temp_exercises.db";
+        int buffer_size = 4096;
+        byte[] buffer = new byte[buffer_size];
+        String newDBPath = context.getDatabasePath(tempNewDbName).getPath();
+
+
+        File tempDBFile = new File(newDBPath);
+        // Если скопированная версия обновленной базы данных существует, удаляем ее
+        if (tempDBFile.exists()) {
+            tempDBFile.delete();
+        }
+
+        File newDBFileDirectory = tempDBFile.getParentFile();
+        // На всякий случай создаем каталог баз данных
+        if (!newDBFileDirectory.exists()) {
+            newDBFileDirectory.mkdirs();
+        }
+
+        try {
+            is = context.getAssets().open(DB_NAME);
+            os = new FileOutputStream(tempDBFile);
+            int bytes_read;
+            while ((bytes_read = is.read(buffer,0, buffer_size)) > 0) {
+                os.write(buffer);
+            }
+            os.flush();
+            os.close();
+            is.close();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Ouch updated database not copied - processing stopped - see stack-trace above.");
+        }
+
+        db.delete(TABLE_EXERCISE,KEY_USERRECORD + " = ?", new String[] {"0"});
+        db.execSQL("ATTACH DATABASE '" + DB_PATH + tempNewDbName + "' AS tempDb");
+        db.execSQL("INSERT INTO main." + TABLE_EXERCISE + " SELECT * FROM tempDb." + TABLE_EXERCISE);
+        db.execSQL("DETACH DATABASE tempDb"); // закрываем подключение второй базы данных
+        db.close(); // закрываем основное соединение
+        close();
+
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        tempDBFile.delete();  // Удаляем скопированную базу данных, она больше не требуется
     }
 }
