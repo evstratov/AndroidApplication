@@ -9,55 +9,63 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
-        <Button
-            android:id="@+id/btn_complex_training"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttons"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
-            android:layout_marginTop="300sp"
-            style="@style/ButtonText"
-            android:textColor="@color/colorText"
-            android:text="Комплекс" />
+            <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="320sp"
+            android:layout_height="400sp"
+            android:layout_marginTop="5sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15sp"/>
 
-        <Button
-            android:id="@+id/btn_group_trainig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttons"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
-            android:layout_marginTop="50sp"
-            style="@style/ButtonText"
-            android:textColor="@color/colorText"
-            android:text="Группы мышц" />
+            <Button
+                android:id="@+id/btn_complex_training"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons"
+                android:layout_marginLeft="50sp"
+                android:layout_marginRight="50sp"
+                style="@style/ButtonText"
+                android:textColor="@color/colorText"
+                android:text="Комплекс" />
 
-        <Button
-            android:id="@+id/btn_add_exercices"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttons"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
-            android:layout_marginTop="50sp"
-            style="@style/ButtonText"
-            android:textColor="@color/colorText"
-            android:text="Добавить упражнения" />
-        <Button
-            android:id="@+id/btn_delete_exercises"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/buttons"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
-            android:layout_marginTop="50sp"
-            style="@style/ButtonText"
-            android:textColor="@color/colorText"
-            android:text="Удалить/изменить упражнение" />
+            <Button
+                android:id="@+id/btn_group_trainig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons"
+                android:layout_marginLeft="50sp"
+                android:layout_marginRight="50sp"
+                android:layout_marginTop="15sp"
+                style="@style/ButtonText"
+                android:textColor="@color/colorText"
+                android:text="Группы мышц" />
+
+            <Button
+                android:id="@+id/btn_add_exercices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons"
+                android:layout_marginLeft="50sp"
+                android:layout_marginRight="50sp"
+                android:layout_marginTop="15sp"
+                style="@style/ButtonText"
+                android:textColor="@color/colorText"
+                android:text="Добавить упражнения" />
+            <Button
+                android:id="@+id/btn_delete_exercises"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons"
+                android:layout_marginLeft="50sp"
+                android:layout_marginRight="50sp"
+                android:layout_marginTop="15sp"
+                style="@style/ButtonText"
+                android:textColor="@color/colorText"
+                android:text="Удалить/изменить упражнение" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
