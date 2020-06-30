@@ -1,9 +1,11 @@
 package com.example.fitnesappv;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -12,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -29,7 +32,7 @@ public class DBHelper extends SQLiteOpenHelper {
         "День3"
     };
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
     private static String DB_PATH = "";
     public static final String DB_NAME = "exercises.db";
     public static final String TABLE_EXERCISE = "exerciseTable";
@@ -123,6 +126,7 @@ public class DBHelper extends SQLiteOpenHelper {
             updateExerciseTable(mContext, db);
         }
     }
+
     private void updateExerciseTable(Context context, SQLiteDatabase db) {
         // Подготовка к копированию обновленной базы данных из папки ресурсов
         InputStream is;
@@ -161,15 +165,23 @@ public class DBHelper extends SQLiteOpenHelper {
             throw new RuntimeException("Ouch updated database not copied - processing stopped - see stack-trace above.");
         }
 
-        db.delete(TABLE_EXERCISE,KEY_USERRECORD + " = ?", new String[] {"0"});
-        db.execSQL("ATTACH DATABASE '" + DB_PATH + tempNewDbName + "' AS tempDb");
-        db.execSQL("INSERT INTO main." + TABLE_EXERCISE + " SELECT * FROM tempDb." + TABLE_EXERCISE);
-        db.execSQL("DETACH DATABASE tempDb"); // закрываем подключение второй базы данных
-        db.close(); // закрываем основное соединение
-        close();
+        try {
+            db.delete(TABLE_EXERCISE, KEY_USERRECORD + " = ?", new String[]{"0"});
+            db.execSQL("ATTACH DATABASE '" + DB_PATH + tempNewDbName + "' AS tempDb");
+            db.execSQL("INSERT INTO main." + TABLE_EXERCISE + " SELECT * FROM tempDb." + TABLE_EXERCISE);
+            db.execSQL("DETACH DATABASE tempDb"); // закрываем подключение второй базы данных
 
-        db.setTransactionSuccessful();
-        db.endTransaction();
-        tempDBFile.delete();  // Удаляем скопированную базу данных, она больше не требуется
+            db.setTransactionSuccessful();
+            db.endTransaction();
+            tempDBFile.delete();  // Удаляем скопированную базу данных, она больше не требуется
+        } catch (SQLException ex){
+            Log.println(Log.ERROR, "err", ex.getMessage());
+        } finally {
+            db.close(); // закрываем основное соединение
+            close();
+        }
+
+
+
     }
 }
