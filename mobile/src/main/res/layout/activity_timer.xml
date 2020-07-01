@@ -63,7 +63,7 @@
             android:textColor="@color/colorTitleText"/>
 
         <Button
-            android:id="@+id/btn_help"
+            android:id="@+id/btn_how_to_do"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"

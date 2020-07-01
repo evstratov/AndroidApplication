@@ -4,8 +4,9 @@
     <string name="add_title">"Добавить упражнение"</string>
     <string name="group_title">Группы</string>
     <string name="complex_title">Комплекс</string>
-    <string name="help_title">Как делать?</string>
+    <string name="help_title">Справка</string>
     <string name="delete_edit_title">Удааление/редактирование упражнений</string>
     <string name="edit_title">Редактирование упражнения</string>
+    <string name="how_to_do_title">Как делать?</string>
 
 </resources>

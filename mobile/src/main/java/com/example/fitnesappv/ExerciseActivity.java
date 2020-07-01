@@ -8,26 +8,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.LinkedList;
@@ -35,7 +27,6 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.Date;
 
 class ExerciseInfo{
     public String name;
@@ -82,7 +73,7 @@ public class ExerciseActivity extends Activity {
         approach = 1;
 
         btn_stop = (Button) findViewById(R.id.btn_stop);
-        btn_help = (Button) findViewById(R.id.btn_help);
+        btn_help = (Button) findViewById(R.id.btn_how_to_do);
         txt_timer = (TextView) findViewById(R.id.txt_timer);
         txt_curExercise = (TextView) findViewById(R.id.txt_curExercise);
         txt_common_time = (TextView) findViewById(R.id.txt_common_time);
@@ -143,7 +134,7 @@ public class ExerciseActivity extends Activity {
         btn_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ExerciseActivity.this, Help.class);
+                Intent intent = new Intent(ExerciseActivity.this, HowToDo.class);
                 intent.putExtra("currentExercise", exerciseList.get(curExerciseIndex).name);
                 startActivity(intent);
             }

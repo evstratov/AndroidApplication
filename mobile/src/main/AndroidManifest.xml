@@ -31,14 +31,17 @@
         <activity android:name=".Complex"
             android:label = "@string/complex_title">
         </activity>
-        <activity android:name=".Help"
-            android:label = "@string/help_title">
+        <activity android:name=".HowToDo"
+            android:label = "@string/how_to_do_title">
         </activity>
         <activity android:name=".DeleteEditExercise"
             android:label = "@string/delete_edit_title">
         </activity>
         <activity android:name=".EditExercise"
             android:label = "@string/edit_title">
+        </activity>
+        <activity android:name=".Help"
+            android:label = "@string/help_title">
         </activity>
     </application>
 
