@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
@@ -20,7 +23,8 @@
                 android:id="@+id/tablelayout_help_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp">
+                android:layout_marginBottom="10sp"
+                tools:ignore="MissingConstraints">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -30,12 +34,11 @@
                         android:id="@+id/txt_header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginRight="20sp"
                         android:layout_marginBottom="10sp"
                         android:textColor="@color/colorText"
-                        style="@style/TitleText"
-                        android:textSize="40sp"
-                        android:text="Помощь"/>
+                        style="@style/TitleText" />
                 </TableRow>
 
                 <TableRow
@@ -49,13 +52,10 @@
                         android:layout_marginLeft="20sp"
                         android:layout_marginRight="20sp"
                         style="@style/SimpleText"
-                        android:textColor="@color/colorText"
-                        android:textSize="25sp"
-                        android:text="1. Если вы хотите провести классическую тренировку,
-                            где за одно занятие будут проработаны несколько групп мышц, нажмите..."/>
+                        android:textColor="@color/colorText" />
                 </TableRow>
 
-            </TableLayout>
+             </TableLayout>
         </ScrollView>>
 
         <Button

@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.VideoView;
 
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_group_training;
     Button btn_add_exercises;
     Button btn_delete_exercises;
+    ImageButton btn_help;
 
     VideoView videoView;
     MediaPlayer mediaPlayer;
@@ -52,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
         btn_group_training = (Button) findViewById(R.id.btn_group_trainig);
         btn_add_exercises = (Button) findViewById(R.id.btn_add_exercices);
         btn_delete_exercises = (Button) findViewById(R.id.btn_delete_exercises);
+        btn_help = (ImageButton) findViewById(R.id.btn_help);
+
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Help.class);
+                startActivity(intent);
+            }
+        });
 
         btn_group_training.setOnClickListener(new View.OnClickListener() {
             @Override
